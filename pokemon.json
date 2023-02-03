@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "name": "Pikachu",
+        "type": "Eléctrico"
+    },
+    {
+        "id": 2,
+        "name": "Raichu",
+        "type": "Eléctrico"
+    },
+    {
+        "id": 3,
+        "name": "Pichu",
+        "type": "Eléctrico"
+    },
+    {
+        "id": 4,
+        "name": "Charmander",
+        "type": "Fuego"
+    },
+    {
+        "id": 5,
+        "name": "Charmeleon",
+        "type": "Fuego"
+    },
+    {
+        "id": 6,
+        "name": "Charizard",
+        "type": "Fuego"
+    },
+    {
+        "id": 7,
+        "name": "Squirtle",
+        "type": "Agua"
+    },
+    {
+        "id": 8,
+        "name": "Wartortle",
+        "type": "Agua"
+    },
+    {
+        "id": 9,
+        "name": "Blastoise",
+        "type": "Agua"
+    },
+    {
+        "id": 10,
+        "name": "Mew",
+        "type": "Singular"
+    },
+    {
+        "id": 11,
+        "name": "Eevee",
+        "type": "Evolución"
+    },
+    {
+        "id": 12,
+        "name": "Vaporeon",
+        "type": "Agua"
+    },
+    {
+        "id": 13,
+        "name": "Flareon",
+        "type": "Fuego"
+    },
+    {
+        "id": 14,
+        "name": "Jolteon",
+        "type": "Eléctrico"
+    },
+    {
+        "id": 15,
+        "name": "Leafeon",
+        "type": "Planta"
+    },
+    {
+        "id": 16,
+        "name": "Espeon",
+        "type": "Psíquico"
+    },
+    {
+        "id": 17,
+        "name": "Umbreon",
+        "type": "Psíquico"
+    },
+    {
+        "id": 18,
+        "name": "Sylveon",
+        "type": "Hada"
+    },
+    {
+        "id": 19,
+        "name": "Glaceon",
+        "type": "Hielo"
+    },
+    {
+        "id": 20,
+        "name": "Mewtwo",
+        "type": "Psíquico"
+    }
+]

@@ -1,0 +1,89 @@
+#imagen {
+    width: 400px;
+}
+
+.gap {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    row-gap: 6px;
+    max-width: 615px;
+    margin: auto;
+    margin-top: -220px;
+}
+
+.gap>button {
+    color: #000;
+    font-size: 150%;
+    width: 200px;
+    height: 200px;
+    font-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 29px;
+    border-radius: 5px;
+
+    
+}
+
+.gap>button:hover {
+    border: 4px groove lightgray;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-control {
+    width: 75%;
+}
+
+form {
+    margin: 2%;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    /*visibility: hidden;*/
+}
+
+.oculta {
+    visibility: hidden;
+}
+
+#tablero {
+    text-align: center;
+    max-width: 615px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+}
+
+@media only screen and (max-width: 400px)
+{
+    .gap{
+        max-width: 258px;
+        margin-top: -190px;
+    }
+
+    .gap>button {
+        color: #000;
+        font-size: 150%;
+        width: 80px;
+        height: 80px;
+        font-size: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 29px;
+        border-radius: 5px;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    #tablero {
+        max-width: 380px;
+    }
+}
