@@ -445,7 +445,7 @@ function chequear()
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        preguntar()
+        otraMas()
     }
     else if(vertical())
     {
@@ -476,7 +476,7 @@ function chequear()
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        preguntar()
+        otraMas()
     }
     else if(diagonal())
     {
@@ -507,7 +507,7 @@ function chequear()
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        preguntar()
+        otraMas()
 
     }
     else if (turno == 9)
@@ -528,7 +528,7 @@ function chequear()
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        preguntar()
+        otraMas()
     }
 }
 
@@ -610,12 +610,6 @@ function show_form()
     juego.classList.add("oculta")
     tablero.classList.add("oculta")
 }
-
-async function preguntar()
-{
-    await otraMas()
-}
-
 
 function otraMas()
 {
