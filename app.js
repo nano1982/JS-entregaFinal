@@ -138,6 +138,61 @@ enviar.addEventListener('click', (evento) =>
 
 jugadores = JSON.parse(localStorage.getItem('jugadores')) || []
 
+function vaciar()
+{
+    let varias = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
+    varias.forEach((i) => 
+    {
+        i.classList.remove('btn-warning')
+        i.classList.remove('btn-info')
+        i.classList.remove('btn-success')
+        i.classList.add('btn-dark')
+        i.removeAttribute("disabled", "")
+    })
+    let valorA1 = ""
+    let valorA2 = ""
+    let valorA3 = "" 
+    let valorB1 = ""
+    let valorB2 = "" 
+    let valorB3 = ""
+    let valorC1 = ""
+    let valorC2 = ""
+    let valorC3 = ""
+}
+
+
+
+function show_form()
+{
+    jugador1.value = "jugador1"
+    jugador2.value = "jugador2"
+    localStorage.clear()
+    formulario.style.visibility="show"
+    juego.classList.add("oculta")
+    tablero.classList.add("oculta")
+}
+
+function otraMas()
+{
+    Swal.fire({
+        title: 'Juego terminado',
+        text: "¿Jugamos otra?",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, Dale!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          vaciar()
+        }
+        else {
+            vaciar()
+            show_form()
+        }
+      })
+}
+
 
 // función para crear la tabla de posiciones de los jugadores
 function actualizar_tabla()
@@ -579,55 +634,3 @@ c3.addEventListener('click', () => {
     chequear()
 })
 
-function vaciar()
-{
-    let varias = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
-    varias.forEach((i) => 
-    {
-        i.classList.remove('btn-warning')
-        i.classList.remove('btn-info')
-        i.classList.remove('btn-success')
-        i.classList.add('btn-dark')
-        i.setAttribute("abled", "")
-    })
-    let valorA1 = ""
-    let valorA2 = ""
-    let valorA3 = "" 
-    let valorB1 = ""
-    let valorB2 = "" 
-    let valorB3 = ""
-    let valorC1 = ""
-    let valorC2 = ""
-    let valorC3 = ""
-}
-
-function show_form()
-{
-    jugador1.value = "jugador1"
-    jugador2.value = "jugador2"
-    localStorage.clear()
-    formulario.style.visibility="show"
-    juego.classList.add("oculta")
-    tablero.classList.add("oculta")
-}
-
-function otraMas()
-{
-    Swal.fire({
-        title: 'Juego terminado',
-        text: "¿Jugamos otra?",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Sí, Dale!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          vaciar()
-        }
-        else {
-            vaciar()
-            show_form()
-        }
-      })
-}
