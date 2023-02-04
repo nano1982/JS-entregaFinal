@@ -155,6 +155,7 @@ function despulsar(tecla)
 
 function vaciar()
 {
+    console.log(counter)
     despulsar(a1)
     despulsar(a2)
     despulsar(a3)
@@ -173,39 +174,23 @@ function show_form()
 {
     jugador1.value = "jugador1"
     jugador2.value = "jugador2"
+    tablita = ''
+    tablita = document.getElementById('tablita')
     jugadores = []
     localStorage.clear()
+    sessionStorage.clear()
+    fila_foot = ''
+    td_nombre = ''
     formulario.style.visibility="visible"
     juego.classList.add("oculta")
     tablero.classList.add("oculta")
-}
-
-function otraMas()
-{
-    Swal.fire({
-        title: 'Juego terminado',
-        text: "¿Jugamos otra?",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Sí, Dale!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          vaciar()
-        }
-        else {
-            show_form()
-            vaciar()
-        }
-      })
 }
 
 
 // función para crear la tabla de posiciones de los jugadores
 function actualizar_tabla()
 {
-const tablita = document.getElementById("tablita")
+let tablita = document.getElementById("tablita")
 let fila
 jugadores.forEach((item) => {
     fila = document.createElement('tr');
@@ -276,6 +261,7 @@ function pulsar(tecla)
         tecla.classList.add('btn-warning')
         tecla.setAttribute("disabled", "")
         turno++
+        counter++
         return valorTecla
     }
     
@@ -495,21 +481,33 @@ function chequear()
             localStorage.setItem('jugadores', JSON.stringify(jugadores))
 
         }
-        foto = "./images/ganadores/".concat(ganador+".png")
-        Swal.fire(
-            {
-                title: 'Ganador',
-                text: ganador,
-                imageUrl: foto,
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Ganador',
-            }
-        )
+        
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        otraMas()
+        foto = "./images/ganadores/".concat(ganador+".png")
+        mensaje = "Ganador: ".concat(ganador)
+        Swal.fire({
+            title: mensaje,
+            text: "¿Jugamos otra?",
+            imageUrl: foto,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Ganador',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, Dale!',
+            cancelButtonText: "No..."
+        }).then((result) => {
+            if (result.isConfirmed) {
+            vaciar()
+            }
+            else {
+                show_form()
+                vaciar()
+            }
+        })
     }
     else if(vertical())
     {
@@ -526,21 +524,33 @@ function chequear()
             localStorage.setItem('jugadores', JSON.stringify(jugadores))
 
         }
-        foto = "./images/ganadores/".concat(ganador+".png")
-        Swal.fire(
-            {
-                title: 'Ganador',
-                text: ganador,
-                imageUrl: foto,
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Ganador',
-            }
-        )
+        
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        otraMas()
+        foto = "./images/ganadores/".concat(ganador+".png")
+        mensaje = "Ganador: ".concat(ganador)
+        Swal.fire({
+            title: mensaje,
+            text: "¿Jugamos otra?",
+            imageUrl: foto,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Ganador',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, Dale!',
+            cancelButtonText: "No..."
+        }).then((result) => {
+            if (result.isConfirmed) {
+            vaciar()
+            }
+            else {
+                show_form()
+                vaciar()
+            }
+        })
     }
     else if(diagonal())
     {
@@ -557,42 +567,65 @@ function chequear()
             localStorage.setItem('jugadores', JSON.stringify(jugadores))
 
         }
-        foto = "./images/ganadores/".concat(ganador+".png")
-        Swal.fire(
-            {
-                title: 'Ganador',
-                text: ganador,
-                imageUrl: foto,
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Ganador',
-            }
-        )
+        
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        otraMas()
+        foto = "./images/ganadores/".concat(ganador+".png")
+        mensaje = "Ganador: ".concat(ganador)
+        Swal.fire({
+            title: mensaje,
+            text: "¿Jugamos otra?",
+            imageUrl: foto,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Ganador',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, Dale!',
+            cancelButtonText: "No..."
+        }).then((result) => {
+            if (result.isConfirmed) {
+            vaciar()
+            }
+            else {
+                show_form()
+                vaciar()
+            }
+        })
 
     }
-    else if (counter == 9)
+    else if (counter >= 9)
     {
-        Swal.fire(
-            {
-                title: 'Buuuuuuuu',
-                text: "Empate",
-                imageUrl: "./images/ganadores/Empate.png",
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Empate',
-            }
-        )
         jugadores[0].empates++
         jugadores[1].empates++
         localStorage.setItem('jugadores', JSON.stringify(jugadores))
         tablita.innerHTML = ''
         foot_tabla = ''
         actualizar_tabla()
-        otraMas()
+        
+        Swal.fire({
+            title: "Buuuuuuu, empate",
+            text: "¿Jugamos otra?",
+            imageUrl: "./images/ganadores/empate.png",
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Empate',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, Dale!',
+            cancelButtonText: "No..."
+        }).then((result) => {
+            if (result.isConfirmed) {
+            vaciar()
+            }
+            else {
+                show_form()
+                vaciar()
+            }
+        })
     }
 }
 
