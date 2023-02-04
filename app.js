@@ -3,6 +3,7 @@ let listado = []
 let desplegable1, desplegable2
 p1 = "jugador1"
 p2 = "jugador2"
+let counter = 0
 
 
 // función para armar las opciones de los desplegables
@@ -138,26 +139,32 @@ enviar.addEventListener('click', (evento) =>
 
 jugadores = JSON.parse(localStorage.getItem('jugadores')) || []
 
+function despulsar(tecla)
+{
+    tecla.innerHTML = ''
+    tecla.textContent = ''
+    tecla.classList.remove('btn-warning')
+    tecla.classList.remove('btn-info')
+    tecla.classList.remove('btn-success')
+    tecla.classList.add('btn-dark')
+    tecla.removeAttribute("disabled", "")
+    valorTecla = ''
+
+}
+
+
 function vaciar()
 {
-    let varias = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
-    varias.forEach((i) => 
-    {
-        i.classList.remove('btn-warning')
-        i.classList.remove('btn-info')
-        i.classList.remove('btn-success')
-        i.classList.add('btn-dark')
-        i.removeAttribute("disabled", "")
-    })
-    let valorA1 = ""
-    let valorA2 = ""
-    let valorA3 = "" 
-    let valorB1 = ""
-    let valorB2 = "" 
-    let valorB3 = ""
-    let valorC1 = ""
-    let valorC2 = ""
-    let valorC3 = ""
+    despulsar(a1)
+    despulsar(a2)
+    despulsar(a3)
+    despulsar(b1)
+    despulsar(b2)
+    despulsar(b3)
+    despulsar(c1)
+    despulsar(c2)
+    despulsar(c3)
+    counter = 0
 }
 
 
@@ -166,8 +173,9 @@ function show_form()
 {
     jugador1.value = "jugador1"
     jugador2.value = "jugador2"
+    jugadores = []
     localStorage.clear()
-    formulario.style.visibility="show"
+    formulario.style.visibility="visible"
     juego.classList.add("oculta")
     tablero.classList.add("oculta")
 }
@@ -187,8 +195,8 @@ function otraMas()
           vaciar()
         }
         else {
-            vaciar()
             show_form()
+            vaciar()
         }
       })
 }
@@ -223,20 +231,20 @@ td_nombre = document.createElement('td');
 td_nombre.innerHTML = `<strong>Turno</strong>: ${jugadores[0].nombre}`;
 fila_foot.appendChild(td_nombre);
 
-foot_tabla.appendChild(fila_foot);
+tablita.appendChild(fila_foot);
     
 }
 
 // declaro las variables casilleros del tablero
-const a1 = document.getElementById("a1")
-const a2 = document.getElementById("a2")
-const a3 = document.getElementById("a3")
-const b1 = document.getElementById("b1")
-const b2 = document.getElementById("b2")
-const b3 = document.getElementById("b3")
-const c1 = document.getElementById("c1")
-const c2 = document.getElementById("c2")
-const c3 = document.getElementById("c3")
+let a1 = document.getElementById("a1")
+let a2 = document.getElementById("a2")
+let a3 = document.getElementById("a3")
+let b1 = document.getElementById("b1")
+let b2 = document.getElementById("b2")
+let b3 = document.getElementById("b3")
+let c1 = document.getElementById("c1")
+let c2 = document.getElementById("c2")
+let c3 = document.getElementById("c3")
 
 
 // esta función marca la casilla y avisa de quién es el turno
@@ -254,6 +262,7 @@ function pulsar(tecla)
         tecla.classList.add('btn-info')
         tecla.setAttribute("disabled", "")
         turno++
+        counter++
         return valorTecla
         
     }
@@ -565,7 +574,7 @@ function chequear()
         otraMas()
 
     }
-    else if (turno == 9)
+    else if (counter == 9)
     {
         Swal.fire(
             {
