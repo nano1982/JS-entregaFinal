@@ -139,48 +139,43 @@ enviar.addEventListener('click', (evento) =>
 
 jugadores = JSON.parse(localStorage.getItem('jugadores')) || []
 
-function despulsar(tecla)
+
+// función para resetear los botones como al inicio
+function despulsar(tecla, valorTecla)
 {
-    tecla.innerHTML = ''
-    tecla.textContent = ''
+    tecla.replaceChildren()
     tecla.classList.remove('btn-warning')
     tecla.classList.remove('btn-info')
     tecla.classList.remove('btn-success')
     tecla.classList.add('btn-dark')
     tecla.removeAttribute("disabled", "")
-    valorTecla = ''
-
+    valorTecla = null
+    tecla = document.getElementById(tecla.toString())
 }
 
-
+// función para vaciar las variables y volver a empezar
 function vaciar()
 {
-    console.log(counter)
-    despulsar(a1)
-    despulsar(a2)
-    despulsar(a3)
-    despulsar(b1)
-    despulsar(b2)
-    despulsar(b3)
-    despulsar(c1)
-    despulsar(c2)
-    despulsar(c3)
+    let coordenadas = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"]
+    coordenadas.forEach((item) => {
+        let j = "valor".concat(item.toUpperCase())
+        despulsar(eval(item), eval(j))
+    })
     counter = 0
+    actualizar_tabla()
 }
 
 
-
+// muestra el formulario
 function show_form()
 {
+    jugadores = []
     jugador1.value = "jugador1"
     jugador2.value = "jugador2"
-    tablita = ''
     tablita = document.getElementById('tablita')
-    jugadores = []
+    tablita.innerHTML = ''
     localStorage.clear()
     sessionStorage.clear()
-    fila_foot = ''
-    td_nombre = ''
     formulario.style.visibility="visible"
     juego.classList.add("oculta")
     tablero.classList.add("oculta")
@@ -213,7 +208,10 @@ jugadores.forEach((item) => {
 let fila_foot = document.createElement('tr');
 fila_foot = document.createElement('tr');
 td_nombre = document.createElement('td');
-td_nombre.innerHTML = `<strong>Turno</strong>: ${jugadores[0].nombre}`;
+if (jugadores != "")
+{
+    td_nombre.innerHTML = `<strong>Turno</strong>: ${jugadores[0].nombre}`;
+}
 fila_foot.appendChild(td_nombre);
 
 tablita.appendChild(fila_foot);
@@ -245,10 +243,6 @@ function pulsar(tecla)
         // avisa de quién es el turno
         td_nombre.innerHTML = `<strong>Turno</strong>: ${jugadores[1].nombre}`
         tecla.classList.add('btn-info')
-        tecla.setAttribute("disabled", "")
-        turno++
-        counter++
-        return valorTecla
         
     }
     else
@@ -259,11 +253,11 @@ function pulsar(tecla)
         // avisa de quién es el turno
         td_nombre.innerHTML = `<strong>Turno</strong>: ${jugadores[0].nombre}`
         tecla.classList.add('btn-warning')
-        tecla.setAttribute("disabled", "")
-        turno++
-        counter++
-        return valorTecla
     }
+    tecla.setAttribute("disabled", "")
+    turno++
+    counter++
+    return valorTecla
     
 }
     
@@ -272,7 +266,7 @@ function pulsar(tecla)
 function vertical()
 {
 
-    if (valorA1 == valorB1 && valorB1 == valorC1 && valorA1 != "" && valorA1 != undefined)
+    if (valorA1 == valorB1 && valorB1 == valorC1 && valorA1 != "" && valorA1 != undefined && valorA1 != null)
     {
         a1.classList.remove('btn-warning')
         a1.classList.remove('btn-info')
@@ -294,7 +288,7 @@ function vertical()
     
     
     }
-    else if (valorA2 == valorB2 && valorB2 == valorC2 && valorA2 != "" && valorA2 != undefined)
+    else if (valorA2 == valorB2 && valorB2 == valorC2 && valorA2 != "" && valorA2 != undefined && valorA2 != null)
     {
         a2.classList.remove('btn-warning')
         a2.classList.remove('btn-info')
@@ -315,7 +309,7 @@ function vertical()
         return true
 
     }
-    else if (valorA3 == valorB3 && valorB3 == valorC3 && valorA3 != "" && valorA3 != undefined)
+    else if (valorA3 == valorB3 && valorB3 == valorC3 && valorA3 != "" && valorA3 != undefined && valorA3 != null)
     {
         a3.classList.remove('btn-warning')
         a3.classList.remove('btn-info')
@@ -345,7 +339,7 @@ function vertical()
 function horizontal()
 {
 
-    if (valorA1 == valorA2 && valorA2 == valorA3 && valorA1 != "" && valorA1 != undefined)
+    if (valorA1 == valorA2 && valorA2 == valorA3 && valorA1 != "" && valorA1 != undefined && valosA1 != null)
     {
         a1.classList.remove('btn-warning')
         a1.classList.remove('btn-info')
@@ -367,7 +361,7 @@ function horizontal()
         return true
 
     }
-    if (valorB1 == valorB2 && valorB2 == valorB3 && valorB1 != "" && valorB1 != undefined)
+    if (valorB1 == valorB2 && valorB2 == valorB3 && valorB1 != "" && valorB1 != undefined && valorB1 != null)
     {
         b1.classList.remove('btn-warning')
         b1.classList.remove('btn-info')
@@ -387,7 +381,7 @@ function horizontal()
 
         return true
     }
-    if (valorC1 == valorC2 && valorC2 == valorC3 && valorC1 != "" && valorC1 != undefined)
+    if (valorC1 == valorC2 && valorC2 == valorC3 && valorC1 != "" && valorC1 != undefined && valosC1 != null)
     {
         c1.classList.remove('btn-warning')
         c1.classList.remove('btn-info')
@@ -416,7 +410,7 @@ function horizontal()
 
 function diagonal()
 {
-    if (valorA1 == valorB2 && valorB2 == valorC3 && valorA1 != "" && valorA1 != undefined)
+    if (valorA1 == valorB2 && valorB2 == valorC3 && valorA1 != "" && valorA1 != undefined && valorA1 != null)
     {
         a1.classList.remove('btn-warning')
         a1.classList.remove('btn-info')
@@ -437,7 +431,7 @@ function diagonal()
         return true
         
     }
-    else if (valorA3 == valorB2 && valorB2 == valorC1 && valorA3 != "" && valorA3 != undefined)
+    else if (valorA3 == valorB2 && valorB2 == valorC1 && valorA3 != "" && valorA3 != undefined && valorA3 != null)
     {
         a3.classList.remove('btn-warning')
         a3.classList.remove('btn-info')
@@ -464,6 +458,8 @@ function diagonal()
 
 }
 
+
+// función que usar horizontal(), vertical() y diagonal() y muestra si hay ganador o empate
 function chequear()
 {
     if (horizontal())
@@ -590,8 +586,8 @@ function chequear()
             vaciar()
             }
             else {
-                show_form()
                 vaciar()
+                show_form()
             }
         })
 
@@ -622,8 +618,8 @@ function chequear()
             vaciar()
             }
             else {
-                show_form()
                 vaciar()
+                show_form()
             }
         })
     }
